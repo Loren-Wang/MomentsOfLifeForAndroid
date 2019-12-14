@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/DEFAULT_BG_COLOR">
+
+    <EditText
+            android:id="@+id/edtAccount"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/hollow_radio_8"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center_vertical"
+            style="@style/defaultTextStyle"
+            android:digits="1234567890"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:hint="@string/page_login_input_account_hint"/>
+    <EditText
+            android:id="@+id/edtVerificationCode"
+            app:layout_constraintTop_toBottomOf="@id/edtAccount"
+            app:layout_constraintLeft_toLeftOf="@id/edtAccount"
+            app:layout_constraintRight_toRightOf="@id/edtAccount"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/hollow_radio_8"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center_vertical"
+            style="@style/defaultTextStyle"
+            android:inputType="number"
+            android:digits="1234567890"
+            android:hint="@string/page_login_input_verification_code"/>
+
+    <Button
+            android:id="@+id/btnLogin"
+            app:layout_constraintTop_toBottomOf="@id/edtVerificationCode"
+            app:layout_constraintLeft_toLeftOf="@id/edtAccount"
+            app:layout_constraintRight_toRightOf="@id/edtAccount"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/avlw_solid_radio_8"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:text="@string/page_login_button_login"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

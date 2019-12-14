@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Appbar背景色-->
+    <color name="colorPrimary">#7B68EE</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark">#7B68EE</color>
+    <!--控制各个控件被选中时的颜色-->
+    <color name="colorAccent">#7B68EE</color>
+    <!--默认背景色-->
+    <color name="DEFAULT_BG_COLOR">#fff</color>
+    <!--默认文本颜色-->
+    <color name="DEFAULT_TEXT_COLOR">#666</color>
+    <!--默认文本提示颜色-->
+    <color name="DEFAULT_TEXT_HINT_COLOR">#dcdcdc</color>
+</resources>
