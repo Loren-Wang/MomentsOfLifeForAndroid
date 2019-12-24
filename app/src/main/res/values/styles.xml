@@ -20,9 +20,40 @@
     </style>
     <!--默认文本样式-->
     <style name="defaultTextStyle">
-        <item name="android:textColor">@color/DEFAULT_TEXT_COLOR</item>
-        <item name="android:textColorHint">@color/DEFAULT_TEXT_HINT_COLOR</item>
+        <item name="android:textColor">@color/defaultTextColor</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/textSize14</item>
+    </style>
+    <!--默认输入输入样式-->
+    <style name="defaultInputTextStyle" parent="defaultTextStyle">
+        <item name="android:textColorHint">@color/defaultTextHintColor</item>
+    </style>
+    <!--默认按钮样式-->
+    <style name="defaultButtonStyle" parent="defaultTextStyle">
+        <item name="android:backgroundTint">@color/defaultButtonDisableColor</item>
+        <item name="android:background">@drawable/avlw_solid_radio_8</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
     </style>
 
+    <!--登录页面输入样式-->
+    <style name="loginInput" parent="defaultInputTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:digits">1234567890</item>
+        <item name="android:background">#fff</item>
+    </style>
 </resources>

@@ -7,9 +7,13 @@
     <!--控制各个控件被选中时的颜色-->
     <color name="colorAccent">#7B68EE</color>
     <!--默认背景色-->
-    <color name="DEFAULT_BG_COLOR">#fff</color>
+    <color name="defaultBgColor">#fff</color>
     <!--默认文本颜色-->
-    <color name="DEFAULT_TEXT_COLOR">#666</color>
+    <color name="defaultTextColor">#666</color>
     <!--默认文本提示颜色-->
-    <color name="DEFAULT_TEXT_HINT_COLOR">#dcdcdc</color>
+    <color name="defaultTextHintColor">#dcdcdc</color>
+    <!--默认按钮禁用颜色-->
+    <color name="defaultButtonDisableColor">#22000000</color>
+    <!--默认线条颜色-->
+    <color name="defaultLineColor">#22000000</color>
 </resources>
