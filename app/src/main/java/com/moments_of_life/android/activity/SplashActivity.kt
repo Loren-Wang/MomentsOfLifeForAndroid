@@ -13,6 +13,7 @@ class SplashActivity : BaseActivity() {
             if (UserInfoUtils.instance.loginStatusCheck(this)) {
                 AtlwActivityJumpUtils.getInstance().jump(this, MainActivity::class.java)
             }
+            finish()
         }, 100)
     }
 }

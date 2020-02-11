@@ -9,16 +9,15 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.moments_of_life.android"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.0.8:8880/\""
             buildConfigField "Integer", "APP_INTERCOMPILATION_TYPE", '0'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -53,11 +52,11 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //自定义基础框架包
-    implementation 'com.github.lorenwang:AndroidCommonBaseFrameLibraryFromLorenWang:1.0.5'
+    implementation 'com.github.lorenwang:AndroidCommonBaseFrameLibraryFromLorenWang:1.0.6'
     //自定义控件库
     implementation 'com.github.lorenwang:AndroidCustomViewsFromLorenWang:1.0.60'
     //自定义工具类
-    implementation 'com.github.lorenwang:AndroidCustomToolsFromLorenWang:1.0.80'
+    implementation 'com.github.lorenwang:AndroidCustomToolsFromLorenWang:1.0.85'
     //java工具类库
     implementation 'com.github.lorenwang:JavaCustomToolsFromLorenWang:1.0.47'
     //java数据格式化类库
@@ -66,4 +65,13 @@ dependencies {
     implementation 'com.github.lorenwang:KotlinCustomToolsFromLorenWang:1.0.2'
     //Toast提示框架
     implementation 'com.github.hss01248:Toasty:2.0.6'
+    //基础工具库
+    implementation("com.moments_of_life.base.javas:JavaBaseLibrary:1.0.0")
+
+    // RxJava 引用
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 }

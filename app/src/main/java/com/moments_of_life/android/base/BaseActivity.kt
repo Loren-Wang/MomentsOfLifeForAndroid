@@ -1,12 +1,14 @@
 package com.moments_of_life.android.base
 
 import android.lorenwang.common_base_frame.AcbflwBaseActivity
-import android.lorenwang.customview.dialog.AvlwBaseDialog
 import android.lorenwang.tools.app.AtlwActivityJumpUtils
+import android.lorenwang.tools.app.AtlwScreenUtils
 import android.os.Bundle
+import android.view.Gravity
+import android.view.ViewGroup
 import com.moments_of_life.android.activity.LoginActivity
+import com.moments_of_life.android.utils.ToastUtils
 import com.moments_of_life.android.view.LoadingDialog
-import kotlinbase.lorenwang.tools.extend.emptyCheck
 
 /**
  * 功能作用：基础Activity
@@ -73,6 +75,9 @@ abstract class BaseActivity : AcbflwBaseActivity() {
      * 网络请求异常
      */
     override fun netReqFail(netOptionReqCode: Int, code: Any?, message: String?) {
+        message?.let {
+            ToastUtils.instance.errorHint(it)
+        }
     }
 
     /**

@@ -1,9 +1,12 @@
 package com.moments_of_life.android.base
 
 import android.lorenwang.common_base_frame.AcbflwBaseApplication
+import android.lorenwang.common_base_frame.network.AcbflwNetworkManager
 import com.moments_of_life.android.BuildConfig
 import com.moments_of_life.android.base.BaseConfig.APP_INTERCOMPILATION_TYPE_PRO
 import es.dmoral.toasty.Toasty
+import okhttp3.Interceptor
+import okhttp3.Response
 
 /**
  * 功能作用：
@@ -20,5 +23,10 @@ class BaseApplication : AcbflwBaseApplication() {
     override fun onCreate() {
         super.onCreate()
         setStatus(BuildConfig.APP_INTERCOMPILATION_TYPE == APP_INTERCOMPILATION_TYPE_PRO)
+
+        //初始化库
+        AcbflwNetworkManager.instance.initRetrofit(
+            BuildConfig.BASE_URL,
+            Interceptor { chain -> chain?.proceed(chain.request())!! })
     }
 }

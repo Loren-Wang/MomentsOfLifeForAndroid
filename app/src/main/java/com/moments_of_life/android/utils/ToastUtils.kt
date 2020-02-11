@@ -37,6 +37,27 @@ class ToastUtils private constructor() {
     }
 
     /**
+     * 错误提示
+     */
+    fun errorHint(msg: String) {
+        MyToast.error(msg)
+    }
+
+    /**
+     * 成功提示
+     */
+    fun successHint(msg: String) {
+        MyToast.success(msg)
+    }
+
+    /**
+     * 编辑内容错误提示
+     */
+    fun successHint(@StringRes resId: Int) {
+        MyToast.success(resId)
+    }
+
+    /**
      * 编辑内容错误提示
      */
     fun editErrorHint(@StringRes resId: Int) {

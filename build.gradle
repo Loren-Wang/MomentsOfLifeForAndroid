@@ -20,6 +20,8 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        //指定绝对路径
+        maven { setUrl("file:///D:/DevelopProject/Official/MomentsOfLife/MomentsOfLifeBaseLibrary") }
     }
 }
 
