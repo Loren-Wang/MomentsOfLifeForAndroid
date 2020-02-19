@@ -1,7 +1,10 @@
 package com.moments_of_life.android.base
 
 import android.lorenwang.common_base_frame.AcbflwBaseApplication
+import android.lorenwang.common_base_frame.image.loading.AcbflwImageLoadingFactory
+import android.lorenwang.common_base_frame.mvp.AcbflwNetRepCode
 import android.lorenwang.common_base_frame.network.AcbflwNetworkManager
+import android.lorenwang.common_base_frame.network.manage.AcbflwResponseGsonConverterFactory
 import com.moments_of_life.android.BuildConfig
 import com.moments_of_life.android.base.BaseConfig.APP_INTERCOMPILATION_TYPE_PRO
 import es.dmoral.toasty.Toasty
@@ -23,10 +26,13 @@ class BaseApplication : AcbflwBaseApplication() {
     override fun onCreate() {
         super.onCreate()
         setStatus(BuildConfig.APP_INTERCOMPILATION_TYPE == APP_INTERCOMPILATION_TYPE_PRO)
+        //默认成功响应码
+        AcbflwNetRepCode.repCodeSuccess = "200"
 
         //初始化库
         AcbflwNetworkManager.instance.initRetrofit(
             BuildConfig.BASE_URL,
-            Interceptor { chain -> chain?.proceed(chain.request())!! })
+            Interceptor { chain -> chain?.proceed(chain.request())!! }, null
+        )
     }
 }

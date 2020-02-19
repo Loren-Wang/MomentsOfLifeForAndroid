@@ -1,9 +1,8 @@
-package com.moments_of_life.android.mvp
+package com.moments_of_life.android.mvp.verificationCode
 
-import android.lorenwang.common_base_frame.mvp.AcbflwBasePresenter
-import android.lorenwang.common_base_frame.network.AcbflwRepDataOptionsCallback
-import android.lorenwang.common_base_frame.network.bean.AcbflwBaseRepBean
 import com.moments_of_life.android.base.BaseActivity
+import com.moments_of_life.android.mvp.BasePresenter
+import com.moments_of_life.android.net.BaseRepDataOptionsCallback
 import javabase.lorenwang.tools.common.JtlwClassUtils
 
 /**
@@ -17,7 +16,7 @@ import javabase.lorenwang.tools.common.JtlwClassUtils
  * 修改时间：
  * 备注：
  */
-open class VerificationCodePresenter(activity: BaseActivity) : AcbflwBasePresenter(activity) {
+open class VerificationCodePresenter(activity: BaseActivity) : BasePresenter(activity) {
     override fun releasePresenterChild() {
 
     }
@@ -27,13 +26,14 @@ open class VerificationCodePresenter(activity: BaseActivity) : AcbflwBasePresent
      */
     fun sendLogin(phoneNum: String, reqCode: Int) {
         JtlwClassUtils.getInstance().getClassEntity(VerificationCodeModel::class.java)
-            .sendLogin(phoneNum, getNetOptionsCallback(object : AcbflwRepDataOptionsCallback<AcbflwBaseRepBean<Any?>> {
+            .sendLogin(phoneNum, getModelCallback(object : BaseRepDataOptionsCallback<Any>(true) {
                 override fun repDataError(code: Any?, message: String?) {
                     activity.netReqFail(reqCode, code, message)
                 }
 
-                override fun viewOptionsData(data: AcbflwBaseRepBean<Any?>?) {
-                    activity.netReqSuccess(reqCode, data)
+                override fun repOptionsData() {
+                    super.repOptionsData()
+                    activity.netReqSuccess(reqCode, null)
                 }
             }))
     }

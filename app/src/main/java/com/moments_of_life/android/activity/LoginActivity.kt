@@ -1,13 +1,17 @@
 package com.moments_of_life.android.activity
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
+import android.lorenwang.tools.app.AtlwActivityJumpUtils
 import android.lorenwang.tools.app.AtlwViewUtils
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import com.moments_of_life.android.MainActivity
 import com.moments_of_life.android.R
 import com.moments_of_life.android.base.BaseActivity
-import com.moments_of_life.android.mvp.VerificationCodePresenter
+import com.moments_of_life.android.mvp.user.UserPresenter
+import com.moments_of_life.android.mvp.verificationCode.VerificationCodePresenter
 import com.moments_of_life.android.utils.ToastUtils
 import javabase.lorenwang.tools.MatchesRegularCommon
 import javabase.lorenwang.tools.thread.CountDownCallback
@@ -17,6 +21,10 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : BaseActivity() {
     private val phoneRegex = Regex(MatchesRegularCommon.EXP_MOBILE)
     private lateinit var optionsPresenter: VerificationCodePresenter
+    /**
+     * 用户操作
+     */
+    private lateinit var userPresenter: UserPresenter
     /**
      * 允许操作验证码发送颜色
      */
@@ -37,8 +45,11 @@ class LoginActivity : BaseActivity() {
      * 倒计时回调
      */
     private val countDownCallback = object : CountDownCallback {
+        @SuppressLint("SetTextI18n")
         override fun countDownTime(sumTime: Long, nowTime: Long) {
-            btnGetVerificationCode.text = "${nowTime / 1000}s"
+            runOnUiThread {
+                btnGetVerificationCode.text = "${nowTime / 1000}s"
+            }
         }
 
         override fun finish() {
@@ -50,16 +61,17 @@ class LoginActivity : BaseActivity() {
         }
     };
 
-    override fun initChildView(savedInstanceState: Bundle?) {
-        super.initChildView(savedInstanceState)
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
         addContentView(R.layout.activity_login)
         optionsPresenter = VerificationCodePresenter(this)
+        userPresenter = UserPresenter(this)
         getVerificationCodeY = getColorStateList(R.color.colorAccent)
         getVerificationCodeN = getColorStateList(R.color.defaultButtonDisableColor)
     }
 
-    override fun initListener() {
-        super.initListener()
+    override fun initListener(savedInstanceState: Bundle?) {
+        super.initListener(savedInstanceState)
         //文本改变监听
         edtAccount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -74,6 +86,31 @@ class LoginActivity : BaseActivity() {
                         if (btnGetVerificationCode.isEnabled) {
                             btnGetVerificationCode.isEnabled = false
                             AtlwViewUtils.getInstance().setBackgroundTint(btnGetVerificationCode, getVerificationCodeN)
+                        }
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        edtVerificationCode.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                s?.let {
+                    btnLogin.setText(R.string.page_login_button_login)
+                    if (it.length == 4) {
+                        if (!btnLogin.isEnabled) {
+                            btnLogin.isEnabled = true
+                            AtlwViewUtils.getInstance().setBackgroundTint(btnLogin, getVerificationCodeY)
+                        }
+                    } else {
+                        if (btnLogin.isEnabled) {
+                            btnLogin.isEnabled = false
+                            AtlwViewUtils.getInstance().setBackgroundTint(btnLogin, getVerificationCodeN)
                         }
                     }
                 }
@@ -111,11 +148,12 @@ class LoginActivity : BaseActivity() {
             }
             //开始检测验证码
             val verificationCode = edtVerificationCode.text.toString()
-            if (verificationCode.length != 6) {
+            if (verificationCode.length != 4) {
                 it.isEnabled = true
                 ToastUtils.instance.editErrorHint(R.string.page_login_error_input_verification_code)
                 return@setOnClickListener
             }
+            userPresenter.login(accountInput, verificationCode, netRequestCodeLogin)
         }
     }
 
@@ -129,7 +167,8 @@ class LoginActivity : BaseActivity() {
                 JtlwTimerUtils.getInstance().countDownTask(1, countDownCallback, 60000, 1000);
             }
             netRequestCodeLogin -> {
-
+                ToastUtils.instance.successHint(R.string.page_login_success_login)
+                AtlwActivityJumpUtils.getInstance().jump(this, MainActivity::class.java)
             }
             else -> {
 
@@ -147,7 +186,7 @@ class LoginActivity : BaseActivity() {
                 AtlwViewUtils.getInstance().setBackgroundTint(btnGetVerificationCode, getVerificationCodeY)
             }
             netRequestCodeLogin -> {
-
+                btnLogin.isEnabled = true
             }
             else -> {
 

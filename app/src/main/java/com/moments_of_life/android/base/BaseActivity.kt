@@ -23,28 +23,22 @@ import com.moments_of_life.android.view.LoadingDialog
  */
 abstract class BaseActivity : AcbflwBaseActivity() {
     private var loading: LoadingDialog? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initChildView(savedInstanceState)
-        initListener()
-        initData()
-    }
-
     /**
      * 初始化子视图
      */
-    open fun initChildView(savedInstanceState: Bundle?) {}
+    override fun initView(savedInstanceState: Bundle?) {
+    }
 
     /**
      * 初始化监听
      */
-    open fun initListener() {}
+    override fun initListener(savedInstanceState: Bundle?) {}
 
     /**
      * 初始化数据
      */
-    open fun initData() {}
+    override fun initData(savedInstanceState: Bundle?) {
+    }
 
     /**
      * 隐藏加载中

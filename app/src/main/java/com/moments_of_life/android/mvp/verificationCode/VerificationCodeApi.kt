@@ -1,9 +1,8 @@
-package com.moments_of_life.android.mvp
+package com.moments_of_life.android.mvp.verificationCode
 
-import android.lorenwang.common_base_frame.network.bean.AcbflwBaseRepBean
 import com.moments_of_life.android.bean.request.VerificationCodeBean
 import io.reactivex.Observable
-import io.reactivex.Observer
+import kotlinbase.lorenwang.tools.common.bean.KttlwBaseNetResponseBean
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -22,5 +21,5 @@ import retrofit2.http.POST
  */
 interface VerificationCodeApi {
     @POST("verificationCode/send/login")
-    fun sendLogin(@Body() bean: VerificationCodeBean): Observable<Response<AcbflwBaseRepBean<Any?>>>
+    fun sendLogin(@Body() bean: VerificationCodeBean): Observable<Response<KttlwBaseNetResponseBean<Any>>>
 }

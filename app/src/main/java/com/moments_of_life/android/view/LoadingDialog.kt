@@ -26,6 +26,6 @@ class LoadingDialog(activity: Activity) : AvlwBaseDialog(
 ) {
 
     init {
-        view.minimumHeight = AtlwScreenUtils.getInstance().getScreenHeight(activity)
+        view.minimumHeight = AtlwScreenUtils.getInstance().getScreenHeight()
     }
 }
