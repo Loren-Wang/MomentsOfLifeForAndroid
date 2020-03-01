@@ -10,4 +10,9 @@
     <string name="page_login_success_login">登录成功</string>
     <string name="page_login_error_input_account">请输入正确的手机号</string>
     <string name="page_login_error_input_verification_code">请输入正确的验证码</string>
+
+    <!--mainTab-->
+    <string name="main_tab_home">主页</string>
+    <string name="main_tab_household_objects">物品</string>
+    <string name="main_tab_user">我的</string>
 </resources>

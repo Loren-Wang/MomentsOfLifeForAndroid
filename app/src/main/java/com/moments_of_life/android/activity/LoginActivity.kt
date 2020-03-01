@@ -7,7 +7,6 @@ import android.lorenwang.tools.app.AtlwViewUtils
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.moments_of_life.android.MainActivity
 import com.moments_of_life.android.R
 import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.mvp.user.UserPresenter

@@ -3,7 +3,6 @@ package com.moments_of_life.android.activity
 import android.lorenwang.tools.app.AtlwActivityJumpUtils
 import android.lorenwang.tools.app.AtlwThreadUtils
 import android.os.Bundle
-import com.moments_of_life.android.MainActivity
 import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.utils.UserInfoUtils
 

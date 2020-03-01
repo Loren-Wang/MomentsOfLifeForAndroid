@@ -17,7 +17,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://192.168.0.9:8881/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.1.4:8881/\""
             buildConfigField "Integer", "APP_INTERCOMPILATION_TYPE", '0'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -52,7 +52,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //自定义基础框架包
-    implementation 'com.github.lorenwang:AndroidCommonBaseFrameLibraryFromLorenWang:1.1.0'
+    implementation 'com.github.lorenwang:AndroidCommonBaseFrameLibraryFromLorenWang:1.1.01'
     //自定义控件库
     implementation 'com.github.lorenwang:AndroidCustomViewsFromLorenWang:1.0.853'
     //自定义工具类

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/white">
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glP1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintGuide_percent="0.333"
+            android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glP2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintGuide_percent="0.666"
+            android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glP3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintGuide_percent="1"
+            android:orientation="vertical"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="@id/glP1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@null"
+            android:text="@string/main_tab_home"
+            android:textColor="@android:color/black"
+            android:onClick="mainTabOnClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnHouseholdObjects"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="@id/glP2"
+            app:layout_constraintLeft_toLeftOf="@id/glP1"
+            android:background="@null"
+            android:text="@string/main_tab_household_objects"
+            android:textColor="@android:color/black"
+            android:onClick="mainTabOnClick"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnUser"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintRight_toRightOf="@id/glP3"
+            app:layout_constraintLeft_toLeftOf="@id/glP2"
+            android:background="@null"
+            android:text="@string/main_tab_user"
+            android:textColor="@android:color/black"
+            android:onClick="mainTabOnClick"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
