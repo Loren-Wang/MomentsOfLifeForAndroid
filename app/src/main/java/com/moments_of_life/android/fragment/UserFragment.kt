@@ -1,5 +1,6 @@
 package com.moments_of_life.android.fragment
 
+import android.view.View
 import com.moments_of_life.android.R
 import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.base.BaseFragment
@@ -26,12 +27,12 @@ class UserFragment(activity: BaseActivity) : BaseFragment(activity) {
     /**
      * 初始化数据
      */
-    override fun initData() {
+    override fun initData(view: View) {
     }
 
     /**
      * 初始化view
      */
-    override fun initView() {
+    override fun initView(view: View) {
     }
 }

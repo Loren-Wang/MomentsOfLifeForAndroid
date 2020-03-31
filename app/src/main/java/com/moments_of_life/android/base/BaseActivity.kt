@@ -2,6 +2,7 @@ package com.moments_of_life.android.base
 
 import android.lorenwang.common_base_frame.AcbflwBaseActivity
 import android.lorenwang.tools.app.AtlwActivityJumpUtils
+import android.lorenwang.tools.app.AtlwActivityUtils
 import android.lorenwang.tools.app.AtlwScreenUtils
 import android.os.Bundle
 import android.view.Gravity
@@ -85,5 +86,10 @@ abstract class BaseActivity : AcbflwBaseActivity() {
      */
     override fun userLoginStatusError(code: Any?, message: String?) {
         AtlwActivityJumpUtils.getInstance().jump(this, LoginActivity::class.java)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        AtlwActivityUtils.getInstance().receivePermissionsResult(requestCode, permissions, grantResults)
     }
 }

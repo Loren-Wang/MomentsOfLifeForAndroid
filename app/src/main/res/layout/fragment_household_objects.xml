@@ -2,11 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <android.lorenwang.graphic_code_scan.AgcslwScanView
+            android:id="@+id/surfaceView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="家用物品信息页面"/>
+            app:shadowPercentLeft="0.3"
+            app:shadowPercentRight="0.3"
+            app:shadowPercentTop="0.3"
+            app:shadowPercentBottom="0.3"
+            app:shadowColor="#99000000"
+            app:outShadowSquare="true"
+            tools:ignore="MissingPrefix"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
