@@ -22,21 +22,21 @@
         <activity
                 android:name=".activity.LoginActivity"
                 android:label="@string/app_name"
-                android:theme="@style/defaultPageTheme"
+                android:theme="@style/DefaultPageTheme"
                 android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".activity.MainActivity"
                 android:label="@string/app_name"
-                android:theme="@style/defaultPageTheme"
-                android:screenOrientation="portrait">
+                android:theme="@style/DefaultPageTheme"
+                android:screenOrientation="fullSensor">
         </activity>
         <!-- 启动页 -->
         <activity
                 android:name=".activity.SplashActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppStart"
-                android:screenOrientation="portrait">
+                android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@id/edtAccount"
             app:layout_constraintRight_toRightOf="@id/edtAccount"
             android:layout_marginTop="20dp"
-            style="@style/defaultButtonStyle"
+            style="@style/DefaultButtonStyle"
             android:layout_height="30dp"
             android:text="@string/page_login_button_get_verification_code"/>
 
@@ -75,7 +75,7 @@
             app:layout_constraintLeft_toLeftOf="@id/edtAccount"
             app:layout_constraintRight_toRightOf="@id/edtAccount"
             android:layout_marginTop="30dp"
-            style="@style/defaultButtonStyle"
+            style="@style/DefaultButtonStyle"
             android:layout_height="40dp"
             android:text="@string/page_login_button_login"/>
 

@@ -12,13 +12,13 @@ import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.mvp.user.UserPresenter
 import com.moments_of_life.android.mvp.verificationCode.VerificationCodePresenter
 import com.moments_of_life.android.utils.ToastUtils
-import javabase.lorenwang.tools.MatchesRegularCommon
+import javabase.lorenwang.tools.JtlwMatchesRegularCommon
 import javabase.lorenwang.tools.thread.CountDownCallback
-import javabase.lorenwang.tools.thread.JtlwTimerUtils
+import javabase.lorenwang.tools.thread.JtlwTimingTaskUtils
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
-    private val phoneRegex = Regex(MatchesRegularCommon.EXP_MOBILE)
+    private val phoneRegex = Regex(JtlwMatchesRegularCommon.EXP_MOBILE)
     private lateinit var optionsPresenter: VerificationCodePresenter
     /**
      * 用户操作
@@ -58,7 +58,7 @@ class LoginActivity : BaseActivity() {
                 AtlwViewUtils.getInstance().setBackgroundTint(btnGetVerificationCode, getVerificationCodeY)
             }
         }
-    };
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
@@ -163,7 +163,7 @@ class LoginActivity : BaseActivity() {
             netRequestCodeVerification -> {
                 ToastUtils.instance.successHint(R.string.page_login_success_send_verification_code)
                 //开启倒计时
-                JtlwTimerUtils.getInstance().countDownTask(1, countDownCallback, 60000, 1000);
+                JtlwTimingTaskUtils.getInstance().countDownTask(1, countDownCallback, 60000, 1000);
             }
             netRequestCodeLogin -> {
                 ToastUtils.instance.successHint(R.string.page_login_success_login)

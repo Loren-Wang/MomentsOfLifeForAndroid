@@ -1,7 +1,6 @@
 package com.moments_of_life.android.fragment
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Rect
 import android.lorenwang.graphic_code_scan.AgcslwScan
@@ -10,13 +9,10 @@ import android.lorenwang.graphic_code_scan.AgcslwScanView
 import android.lorenwang.tools.app.AtlwActivityUtils
 import android.lorenwang.tools.app.AtlwPermissionRequestCallback
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import com.moments_of_life.android.R
 import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.base.BaseFragment
 import com.moments_of_life.android.utils.ToastUtils
-import kotlinx.android.synthetic.main.fragment_household_objects.*
 
 /**
  * 功能作用：家用物品信息页面fragment
@@ -29,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_household_objects.*
  * 修改时间：
  * 备注：
  */
-class HouseholdObjectsFragment(activity: BaseActivity) : BaseFragment(activity) {
+class HouseholdObjectsOptionsFragment(activity: BaseActivity) : BaseFragment(activity) {
     private val scan = AgcslwScan()
     private var surfaceView: AgcslwScanView? = null
     /**
@@ -48,7 +44,17 @@ class HouseholdObjectsFragment(activity: BaseActivity) : BaseFragment(activity) 
         AtlwActivityUtils.getInstance().goToRequestPermissions(activity,
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 0,
                 object : AtlwPermissionRequestCallback {
-                    override fun perissionRequestSuccessCallback(perissionList: MutableList<String>?, permissionsRequestCode: Int) {
+
+                    override fun permissionRequestFailCallback(
+                        permissionList: MutableList<String>?,
+                        permissionsRequestCode: Int
+                    ) {
+                    }
+
+                    override fun permissionRequestSuccessCallback(
+                        permissionList: MutableList<String>?,
+                        permissionsRequestCode: Int
+                    ) {
                         surfaceView?.setAgcslwScan(scan)
                         //开启扫描
                         scan.startScan(activity, surfaceView?.surfaceView, true, true, true, true, true)
@@ -119,9 +125,6 @@ class HouseholdObjectsFragment(activity: BaseActivity) : BaseFragment(activity) 
                             override fun cameraInitError() {
                             }
                         })
-                    }
-
-                    override fun perissionRequestFailCallback(perissionList: MutableList<String>?, permissionsRequestCode: Int) {
                     }
                 })
     }

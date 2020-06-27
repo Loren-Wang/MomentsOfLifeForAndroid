@@ -17,7 +17,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://192.168.1.4:8881/\""
+            buildConfigField "String", "BASE_URL", "\"http://127.0.0.1:8881/\""
             buildConfigField "Integer", "APP_INTERCOMPILATION_TYPE", '0'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -54,15 +54,15 @@ dependencies {
     //自定义基础框架包
     implementation 'com.github.lorenwang:AndroidCommonBaseFrameLibraryFromLorenWang:1.1.02'
     //自定义控件库
-    implementation 'com.github.lorenwang:AndroidCustomViewsFromLorenWang:1.0.853'
+    implementation 'com.github.lorenwang:AndroidCustomViewsFromLorenWang:1.0.93'
     //自定义工具类
-    implementation 'com.github.lorenwang:AndroidCustomToolsFromLorenWang:1.0.932'
+    implementation 'com.github.lorenwang:AndroidCustomToolsFromLorenWang:1.0.97'
     //java工具类库
-    implementation 'com.github.lorenwang:JavaCustomToolsFromLorenWang:1.0.47'
+    implementation 'com.github.lorenwang:JavaCustomToolsFromLorenWang:1.0.66'
     //java数据格式化类库
-    implementation 'com.github.lorenwang:JavaDataParseFromLorenWang:1.0.11'
+    implementation 'com.github.lorenwang:JavaDataParseFromLorenWang:1.1.6'
     //kotlin工具类
-    implementation 'com.github.lorenwang:KotlinCustomToolsFromLorenWang:1.0.71'
+    implementation 'com.github.lorenwang:KotlinCustomToolsFromLorenWang:1.1.2'
     //图形码扫描框架
     implementation 'com.github.lorenwang:AndroidGraphicCodeScanFromLorenWang:1.1.3'
     //Toast提示框架

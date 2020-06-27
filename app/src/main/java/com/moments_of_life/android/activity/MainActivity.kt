@@ -1,22 +1,19 @@
 package com.moments_of_life.android.activity
 
 import android.graphics.Color
-import android.lorenwang.common_base_frame.adapter.AcbflwBaseRecyclerAdapter
-import android.lorenwang.common_base_frame.adapter.AcbflwBaseRecyclerViewHolder
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
-import androidx.fragment.app.FragmentTransaction
 import com.moments_of_life.android.R
 import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.fragment.HomeFragment
-import com.moments_of_life.android.fragment.HouseholdObjectsFragment
+import com.moments_of_life.android.fragment.HouseholdObjectsOptionsFragment
 import com.moments_of_life.android.fragment.UserFragment
 import kotlinx.android.synthetic.main.bottom_view_type_1.*
 
 open class MainActivity : BaseActivity() {
     private var homeFragment: HomeFragment? = null
-    private var householdObjectsFragment: HouseholdObjectsFragment? = null
+    private var householdObjectsOptionsFragment: HouseholdObjectsOptionsFragment? = null
     private var userFragment: UserFragment? = null
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -43,10 +40,10 @@ open class MainActivity : BaseActivity() {
 
             }
             R.id.btnHouseholdObjects -> {
-                if (householdObjectsFragment == null) {
-                    householdObjectsFragment = HouseholdObjectsFragment(this)
+                if (householdObjectsOptionsFragment == null) {
+                    householdObjectsOptionsFragment = HouseholdObjectsOptionsFragment(this)
                 }
-                transaction.replace(R.id.frameLayout, householdObjectsFragment!!)
+                transaction.replace(R.id.frameLayout, householdObjectsOptionsFragment!!)
             }
             R.id.btnUser -> {
                 if (userFragment == null) {

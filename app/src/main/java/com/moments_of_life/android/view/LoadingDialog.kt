@@ -21,7 +21,7 @@ import com.moments_of_life.android.R
  * 备注：
  */
 class LoadingDialog(activity: Activity) : AvlwBaseDialog(
-    activity, R.layout.dialog_loading, R.style.avlw_loading_dialog_type1, R.style.avlw_dialog_anim_for_center,
+    activity, R.layout.dialog_loading, R.style.avlw_layout_dialog_center, R.style.avlw_anim_dialog_center,
     false, true, true
 ) {
 
