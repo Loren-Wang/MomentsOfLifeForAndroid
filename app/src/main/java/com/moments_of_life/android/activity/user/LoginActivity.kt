@@ -1,4 +1,4 @@
-package com.moments_of_life.android.activity
+package com.moments_of_life.android.activity.user
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.moments_of_life.android.R
+import com.moments_of_life.android.activity.MainActivity
 import com.moments_of_life.android.base.BaseActivity
 import com.moments_of_life.android.mvp.user.UserPresenter
 import com.moments_of_life.android.mvp.verificationCode.VerificationCodePresenter
@@ -60,8 +61,8 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+
     override fun initView(savedInstanceState: Bundle?) {
-        super.initView(savedInstanceState)
         addContentView(R.layout.activity_login)
         optionsPresenter = VerificationCodePresenter(this)
         userPresenter = UserPresenter(this)
@@ -156,7 +157,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    override fun <T> netReqSuccess(netOptionReqCode: Int, data: T?) {
+    override fun <T> netReqSuccess(netOptionReqCode: Int, data: T) {
         super.netReqSuccess(netOptionReqCode, data)
         when (netOptionReqCode) {
             //验证码发送成功

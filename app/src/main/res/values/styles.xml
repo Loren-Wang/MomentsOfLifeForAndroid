@@ -65,4 +65,14 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">5dp</item>
     </style>
+
+    <!--默认标题栏样式-->
+    <style name="DefaultTitleBarHeadView">
+        <item name="avlwLeftBgRes">@android:drawable/ic_notification_clear_all</item>
+        <item name="avlwLeftDistanceLeft">16dp</item>
+        <item name="bavlwLeftDistanceRight">16dp</item>
+        <item name="avlwTitleTextSize">@dimen/textSize16</item>
+        <item name="avlwTitleTextColor">#464646</item>
+    </style>
+
 </resources>

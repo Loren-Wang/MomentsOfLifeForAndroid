@@ -1,8 +1,9 @@
 package com.moments_of_life.android.mvp.user
 
-import android.lorenwang.common_base_frame.mvp.AcbflwBaseModel
-import android.lorenwang.common_base_frame.network.AcbflwNetworkManager
-import android.lorenwang.common_base_frame.network.callback.AcbflwNetOptionsByModelCallback
+import android.app.Activity
+import android.lorenwang.commonbaseframe.mvp.AcbflwBaseModel
+import android.lorenwang.commonbaseframe.network.AcbflwNetworkManager
+import android.lorenwang.commonbaseframe.network.callback.AcbflwNetOptionsByModelCallback
 import com.moments_of_life.base.bean.request.user.UserLoginReqBean
 import com.moments_of_life.base.bean.response.UserInfoRepBean
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,11 +24,12 @@ import kotlinbase.lorenwang.tools.common.bean.KttlwBaseNetResponseBean
 class UserModel : AcbflwBaseModel() {
     /**
      * 发起登录请求
+     * @param act 页面实例
      * @param account 账户
      * @param verificationCode 验证码
      * @param netOptionsCallback 网络请求回调
      */
-    fun login(
+    fun login(act:Activity?,
         account: String, verificationCode: String,
         callback: AcbflwNetOptionsByModelCallback<UserInfoRepBean, KttlwBaseNetResponseBean<UserInfoRepBean>>
     ) {
@@ -37,6 +39,6 @@ class UserModel : AcbflwBaseModel() {
         AcbflwNetworkManager.instance.create(UserApi::class.java)?.login(reqBean)
             ?.subscribeOn(Schedulers.io())           //在IO线程进行网络请求
             ?.observeOn(AndroidSchedulers.mainThread())//回到主线程处理请求结果
-            ?.subscribe(getBaseObserver(null, null, callback));
+            ?.subscribe(getBaseObserver(act,null, null, callback));
     }
 }

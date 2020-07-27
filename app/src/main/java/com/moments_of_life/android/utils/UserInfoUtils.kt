@@ -1,13 +1,12 @@
 package com.moments_of_life.android.utils
 
+import android.lorenwang.commonbaseframe.mvp.AcbflwNetRepCode
 import android.lorenwang.tools.app.AtlwSharedPrefUtils
 import com.moments_of_life.android.BuildConfig
 import com.moments_of_life.android.base.BaseActivity
-import com.moments_of_life.android.config.NetRepCodeList.USER_LOGIN_STATUS_LOSE_EFFICACY
 import com.moments_of_life.base.bean.response.UserInfoRepBean
 import com.moments_of_life.base.utils.MolNetDataTransmitUtils
 import javabase.lorenwang.dataparse.JdplwJsonUtils
-import kotlinbase.lorenwang.tools.extend.emptyCheck
 import kotlinbase.lorenwang.tools.extend.toJsonData
 
 /**
@@ -26,6 +25,7 @@ class UserInfoUtils private constructor() {
      * 用户信息存储key
      */
     private val userInfoSaveKey = "user_info"
+
     /**
      * 用户信息
      */
@@ -65,7 +65,10 @@ class UserInfoUtils private constructor() {
         return if (userInfoBean != null) {
             true
         } else {
-            activity.userLoginStatusError(USER_LOGIN_STATUS_LOSE_EFFICACY, null)
+            activity.userLoginStatusError(
+                if (AcbflwNetRepCode.repCodeLoginStatusError.isNullOrEmpty()) null else AcbflwNetRepCode.repCodeLoginStatusError[0],
+                null
+            )
             false
         }
     }
@@ -77,7 +80,10 @@ class UserInfoUtils private constructor() {
     fun clearUserInfoAndToLogin(activity: BaseActivity) {
         this.userInfoBean = null
         AtlwSharedPrefUtils.getInstance().putString(userInfoSaveKey, "")
-        activity.userLoginStatusError(USER_LOGIN_STATUS_LOSE_EFFICACY, null)
+        activity.userLoginStatusError(
+                if (AcbflwNetRepCode.repCodeLoginStatusError.isNullOrEmpty()) null else AcbflwNetRepCode.repCodeLoginStatusError[0],
+        null
+        )
     }
 
     /**

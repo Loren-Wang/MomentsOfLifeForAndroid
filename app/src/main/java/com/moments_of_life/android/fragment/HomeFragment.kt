@@ -1,5 +1,6 @@
 package com.moments_of_life.android.fragment
 
+import android.os.Bundle
 import android.view.View
 import com.moments_of_life.android.R
 import com.moments_of_life.android.base.BaseActivity
@@ -16,23 +17,13 @@ import com.moments_of_life.android.base.BaseFragment
  * 修改时间：
  * 备注：
  */
-class HomeFragment(activity: BaseActivity) : BaseFragment(activity) {
+class HomeFragment : BaseFragment() {
     /**
-     * 获取fragment资源id
+     * 初始化视图
+     *
+     * @param savedInstanceState 页面切换等操作是手动存储的值
      */
-    override fun getFgLayoutResId(): Int {
-        return R.layout.fragment_home
-    }
-
-    /**
-     * 初始化数据
-     */
-    override fun initData(view: View) {
-    }
-
-    /**
-     * 初始化view
-     */
-    override fun initView(view: View) {
+    override fun initView(savedInstanceState: Bundle?) {
+        addContentView(R.layout.fragment_home,null)
     }
 }

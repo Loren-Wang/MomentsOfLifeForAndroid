@@ -17,7 +17,6 @@ open class MainActivity : BaseActivity() {
     private var userFragment: UserFragment? = null
 
     override fun initView(savedInstanceState: Bundle?) {
-        super.initView(savedInstanceState)
         addContentView(R.layout.activity_main, null, R.layout.bottom_view_type_1)
         changePage(btnHome)
     }
@@ -34,20 +33,20 @@ open class MainActivity : BaseActivity() {
         when (view.id) {
             R.id.btnHome -> {
                 if (homeFragment == null) {
-                    homeFragment = HomeFragment(this)
+                    homeFragment = HomeFragment()
                 }
                 transaction.replace(R.id.frameLayout, homeFragment!!)
 
             }
             R.id.btnHouseholdObjects -> {
                 if (householdObjectsOptionsFragment == null) {
-                    householdObjectsOptionsFragment = HouseholdObjectsOptionsFragment(this)
+                    householdObjectsOptionsFragment = HouseholdObjectsOptionsFragment()
                 }
                 transaction.replace(R.id.frameLayout, householdObjectsOptionsFragment!!)
             }
             R.id.btnUser -> {
                 if (userFragment == null) {
-                    userFragment = UserFragment(this)
+                    userFragment = UserFragment()
                 }
                 transaction.replace(R.id.frameLayout, userFragment!!)
             }

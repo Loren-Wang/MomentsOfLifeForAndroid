@@ -1,11 +1,12 @@
 package com.moments_of_life.android.mvp.user
 
+import android.lorenwang.commonbaseframe.mvp.AcbflwBasePresenter
+import android.lorenwang.commonbaseframe.network.callback.AcbflwRepOptionsByPresenterCallback
 import com.moments_of_life.android.base.BaseActivity
-import com.moments_of_life.android.mvp.BasePresenter
-import com.moments_of_life.android.net.BaseRepDataOptionsCallback
 import com.moments_of_life.android.utils.UserInfoUtils
 import com.moments_of_life.base.bean.response.UserInfoRepBean
 import javabase.lorenwang.tools.common.JtlwClassUtils
+import kotlinbase.lorenwang.tools.common.bean.KttlwBaseNetResponseBean
 
 /**
  * 功能作用：用户Presenter
@@ -18,7 +19,7 @@ import javabase.lorenwang.tools.common.JtlwClassUtils
  * 修改时间：
  * 备注：
  */
-class UserPresenter(activity: BaseActivity) : BasePresenter(activity) {
+class UserPresenter(activity: BaseActivity) : AcbflwBasePresenter(activity) {
     override fun releasePresenterChild() {
     }
 
@@ -29,22 +30,22 @@ class UserPresenter(activity: BaseActivity) : BasePresenter(activity) {
      * @param reqCode 网络请求code
      */
     fun login(account: String, verificationCode: String, reqCode: Int) {
-        JtlwClassUtils.getInstance().getClassEntity(UserModel::class.java)
-            .login(
-                account,
-                verificationCode,
-                getModelCallback(object : BaseRepDataOptionsCallback<UserInfoRepBean>(false) {
-                    override fun repDataError(code: Any?, message: String?) {
-                        activity.netReqFail(reqCode, code, message)
-                    }
+        getModel(UserModel::class.java).login(
+            activity, account, verificationCode,
+            getNetOptionsCallback(reqCode,object : AcbflwRepOptionsByPresenterCallback<KttlwBaseNetResponseBean<UserInfoRepBean>> {
+                override fun repDataError(code: Any?, message: String?) {
+                    baseView.netReqFail(reqCode, code, message)
+                }
 
-                    override fun repOptionsData(data: UserInfoRepBean) {
-                        super.repOptionsData(data)
-                        UserInfoUtils.instance.upDateUserInfo(data)
-                        activity.netReqSuccess(reqCode, data)
-                    }
-                })
-            )
+                /**
+                 * 返回view操作数据
+                 */
+                override fun viewOptionsData(data: KttlwBaseNetResponseBean<UserInfoRepBean>) {
+                    UserInfoUtils.instance.upDateUserInfo(data.data!!)
+                    baseView.netReqSuccess(reqCode, data)
+                }
+            })
+        )
     }
 
 }

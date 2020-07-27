@@ -1,9 +1,9 @@
 package com.moments_of_life.android.mvp.verificationCode
 
+import android.lorenwang.commonbaseframe.mvp.AcbflwBasePresenter
+import android.lorenwang.commonbaseframe.network.callback.AcbflwRepOptionsByPresenterCallback
 import com.moments_of_life.android.base.BaseActivity
-import com.moments_of_life.android.mvp.BasePresenter
-import com.moments_of_life.android.net.BaseRepDataOptionsCallback
-import javabase.lorenwang.tools.common.JtlwClassUtils
+import kotlinbase.lorenwang.tools.common.bean.KttlwBaseNetResponseBean
 
 /**
  * 功能作用：验证码逻辑处理
@@ -16,7 +16,7 @@ import javabase.lorenwang.tools.common.JtlwClassUtils
  * 修改时间：
  * 备注：
  */
-open class VerificationCodePresenter(activity: BaseActivity) : BasePresenter(activity) {
+open class VerificationCodePresenter(activity: BaseActivity) : AcbflwBasePresenter(activity) {
     override fun releasePresenterChild() {
 
     }
@@ -25,16 +25,26 @@ open class VerificationCodePresenter(activity: BaseActivity) : BasePresenter(act
      * 发送登录验证码
      */
     fun sendLogin(phoneNum: String, reqCode: Int) {
-        JtlwClassUtils.getInstance().getClassEntity(VerificationCodeModel::class.java)
-            .sendLogin(phoneNum, getModelCallback(object : BaseRepDataOptionsCallback<Any>(true) {
-                override fun repDataError(code: Any?, message: String?) {
-                    activity.netReqFail(reqCode, code, message)
-                }
+        getModel(VerificationCodeModel::class.java)
+            .sendLogin(
+                activity, phoneNum, getNetOptionsCallback(reqCode, true,
+                    object : AcbflwRepOptionsByPresenterCallback<KttlwBaseNetResponseBean<Any>> {
+                        /**
+                         * 响应数据异常
+                         * @param code 错误码
+                         */
+                        override fun repDataError(code: Any?, message: String?) {
+                            baseView.netReqFail(reqCode, code, message)
+                        }
 
-                override fun repOptionsData() {
-                    super.repOptionsData()
-                    activity.netReqSuccess(reqCode, null)
-                }
-            }))
+                        /**
+                         * 返回view操作数据
+                         */
+                        override fun viewOptionsData(data: KttlwBaseNetResponseBean<Any>) {
+                            baseView.netReqSuccess(reqCode, null)
+                        }
+
+                    })
+            )
     }
 }

@@ -1,8 +1,9 @@
 package com.moments_of_life.android.utils
 
-import android.lorenwang.common_base_frame.AcbflwBaseApplication
-import android.lorenwang.common_base_frame.AcbflwBaseConfig
+import android.lorenwang.commonbaseframe.AcbflwBaseApplication
+import android.lorenwang.commonbaseframe.AcbflwBaseConfig
 import androidx.annotation.StringRes
+import com.moments_of_life.android.BuildConfig
 import es.dmoral.toasty.MyToast
 
 /**
@@ -33,7 +34,7 @@ class ToastUtils private constructor() {
     }
 
     init {
-        MyToast.init(AcbflwBaseApplication.application, AcbflwBaseConfig.baseDebugStatus, true)
+        MyToast.init(AcbflwBaseApplication.application, AcbflwBaseConfig.appCompileTypeIsDebug(BuildConfig.APP_COMPILE_TYPE), true)
     }
 
     /**

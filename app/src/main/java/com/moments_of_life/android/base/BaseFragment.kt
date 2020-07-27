@@ -1,8 +1,9 @@
 package com.moments_of_life.android.base
 
-import android.lorenwang.common_base_frame.AcbflwBaseFragment
-import androidx.fragment.app.Fragment
-import com.moments_of_life.android.view.LoadingDialog
+import android.lorenwang.commonbaseframe.AcbflwBaseFragment
+import android.lorenwang.commonbaseframe.mvp.AcbflwBaseView
+import com.moments_of_life.android.R
+import com.moments_of_life.android.dialog.LoadingDialog
 
 /**
  * 功能作用：基础fragment
@@ -15,50 +16,48 @@ import com.moments_of_life.android.view.LoadingDialog
  * 修改时间：
  * 备注：
  */
-abstract class BaseFragment(var activity: BaseActivity) : AcbflwBaseFragment() {
-    private var loading: LoadingDialog? = null
-    /**
-     * 隐藏加载中
-     */
+abstract class BaseFragment : AcbflwBaseFragment() {
+    private var loadingDialog: LoadingDialog? = null
     override fun hideBaseLoading() {
-        loading?.dismiss()
+        if (loadingDialog != null) {
+            loadingDialog!!.dismiss()
+        }
+    }
+
+    override fun addContentView(resId: Int) {
+        super.addContentView(resId, R.layout.title_bar_head_view_type_1)
     }
 
     /**
-     * 网络请求失败
-     * @param netOptionReqCode 网络操作请求code
-     * @param code 错误码
-     * @param message 错误信息
+     * 显示空数据
      */
-    override fun netReqFail(netOptionReqCode: Int, code: Any?, message: String?) {
-        activity.netReqFail(netOptionReqCode, code, message)
+    protected fun showEmptyData() {
+        super.showEmptyData(R.layout.empty_data_default)
     }
+
+    override fun showBaseLoading(allowLoadingBackFinishPage: Boolean) {
+        if (loadingDialog == null && activity != null) {
+            loadingDialog = LoadingDialog(activity)
+        }
+        if (loadingDialog != null && !loadingDialog!!.isShowing) {
+            loadingDialog!!.show(allowLoadingBackFinishPage)
+        }
+    }
+
+    override fun userLoginStatusError(code: Any?, message: String?) {
+        hideBaseLoading()
+        if (activity != null && activity is AcbflwBaseView) {
+            (activity as AcbflwBaseView?)!!.userLoginStatusError(code, message)
+        }
+    }
+
+    override fun netReqFail(netOptionReqCode: Int, code: Any?, message: String?) {}
 
     /**
      * 网络请求成功
-     * @param data 响应数据
+     *
+     * @param data             响应数据
      * @param netOptionReqCode 网络操作请求code
      */
-    override fun <T> netReqSuccess(netOptionReqCode: Int, data: T?) {
-        activity.netReqSuccess(netOptionReqCode, data)
-    }
-
-    /**
-     * 显示加载中
-     * @param allowLoadingBackFinishPage 是否允许后退结束当前页面
-     */
-    override fun showBaseLoading(allowLoadingBackFinishPage: Boolean) {
-        if (loading == null) {
-            synchronized(LoadingDialog::class.java) {
-                if (loading == null) {
-                    loading = LoadingDialog(activity)
-                }
-            }
-        }
-        loading?.let {
-            if (!it.isShowing) {
-                it.show()
-            }
-        }
-    }
+    override fun <T> netReqSuccess(netOptionReqCode: Int, data: T) {}
 }
